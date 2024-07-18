@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import styles from './HomePage.module.css'
 import PriceList from './PriceList'
+import styless from './Navbar.module.css'
 
 const HomePage = () => {
 
@@ -12,22 +13,25 @@ const HomePage = () => {
 
     const handleClick = (item:string)=>{
         setCoin(()=>item);
-        console.log(coin)
     }
 
   return (
     <div>
-        <div className={styles.dropdown}>
-            <button className={styles.dropbtn}>{coin}</button>
+        <div className={styless.navbar}>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li className={styles.dropdown}>
+                <a className={styles.dropbtn}>{coin}</a>
                 <div className={styles.dropdownContent}>
-                    {
-                    CoinList.map((item)=>{
-                        return <button key={item} onClick={()=>handleClick(item)} value={item}>{ item }</button>
-                    })
-                }
-            </div>
-        </div>
-        <PriceList coin={coin}></PriceList>
+                        {CoinList.map((item)=>{
+                                    return <button key={item} onClick={()=>handleClick(item)} value={item}>{ item }</button>
+                                })}
+                </div>
+            </li>
+        </ul>
+    </div>
+    <PriceList coin={coin}></PriceList>
     </div>
   )
 }

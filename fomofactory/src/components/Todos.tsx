@@ -5,7 +5,7 @@ import React from 'react'
 
 const Todos = () => {
     const {todos} = useTodos()
-    console.log(todos)
+    // console.log(todos)
     let filterTodos = todos;
   return (
     <ul>
