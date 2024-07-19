@@ -12,7 +12,7 @@ type AuthState = {
 
 const initialState = {
   value:{
-    coin:localStorage.getItem('coin') || 'Bitcoin', 
+    coin:localStorage?.getItem('coin') || 'Bitcoin', 
   } as AuthState,
 } as InitialState;
 

@@ -19,10 +19,6 @@ cursor: pointer;
   text-decoration: none;
 }
 
-/* .active:hover{
-  background-color: aqua;
-} */
-
 .navbar li a:hover {
   background-color: #111;
 }

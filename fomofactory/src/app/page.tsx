@@ -6,8 +6,6 @@ const page = () => {
   return (
     <main className={styles.main}>
       <HomePage></HomePage>
-      {/* <AddTodo></AddTodo> */}
-      {/* <Todos></Todos> */}
     </main>
   )
 }
