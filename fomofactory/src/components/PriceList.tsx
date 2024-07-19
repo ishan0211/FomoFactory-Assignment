@@ -15,7 +15,6 @@ const PriceList = (props: any) => {
     const [loading, setLoading] = useState<boolean>(true);
 
     const API_URL = `http://127.0.0.1:8002/service/marketprice/?name=${props.coin}&page=1&page_limit=20`;
-
     const fetchData = async () => {
         try {
             const response = await axios.get(API_URL);
@@ -28,12 +27,12 @@ const PriceList = (props: any) => {
         }
     }
 
-    useEffect(() => {
-      const id = setInterval(fetchData, 10000);
-      return () => {
-        clearInterval(id)
-      }
-    }, [API_URL])
+    // useEffect(() => {
+    //   const id = setInterval(fetchData, 10000);
+    //   return () => {
+    //     clearInterval(id)
+    //   }
+    // }, [API_URL])
 
     useEffect(() => {
         const getData = async () => {

@@ -1,34 +1,41 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './HomePage.module.css'
 import PriceList from './PriceList'
-import styless from './Navbar.module.css'
+import { setCoin } from '@/store/features/auth-slice'
+import { useDispatch } from 'react-redux'
+import { AppDispatch, useAppSelector } from '@/store/store'
 
 const HomePage = () => {
 
     const CoinList = ['Bitcoin','Ethereum','Tether','BNB','Solana']
 
-    const [coin,setCoin] = useState("Bitcoin")
+    const dispatch = useDispatch<AppDispatch>();
+
+    const coin = useAppSelector((state)=> state.authReducer.value.coin)
+
+    // const [coin,setCoin] = useState("Bitcoin")
 
     const handleClick = (item:string)=>{
-        setCoin(()=>item);
+        dispatch(setCoin(item));
+        localStorage.setItem('coin', item);
+        // setCoin(()=>item);
     }
 
+    useEffect(() => {
+        console.log("lund"+coin)
+      return () => {
+      }
+    }, [coin])
+
   return (
-    <div>
-        <div className={styless.navbar}>
+    <div className={styles.container}>
+        <div className={styles.navbar}>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#news">News</a></li>
-            <li className={styles.dropdown}>
-                <a className={styles.dropbtn}>{coin}</a>
-                <div className={styles.dropdownContent}>
-                        {CoinList.map((item)=>{
-                                    return <button key={item} onClick={()=>handleClick(item)} value={item}>{ item }</button>
-                                })}
-                </div>
-            </li>
+            {CoinList.map((item)=>{
+                    return <li key={item} className={coin===item?styles.active:styles.inactive} onClick={()=>handleClick(item)} value={item}><a>{ item }</a></li>
+                })}
         </ul>
     </div>
     <PriceList coin={coin}></PriceList>
