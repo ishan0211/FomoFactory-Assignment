@@ -5,7 +5,7 @@ from app.actions.market_data.add_market_data import AddMarketData
 router = APIRouter(prefix="/cronjob")
 
 @router.on_event("startup")
-@repeat_every(seconds=36000000000)
+@repeat_every(seconds=60)
 async def sample_cron():
     try:
         print("cron job is running")
